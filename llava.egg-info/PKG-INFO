@@ -1,0 +1,315 @@
+Metadata-Version: 2.4
+Name: llava
+Version: 1.7.0.dev0
+Summary: LLaVA OneVision: The Next Generation of LLaVA with Better Image and Video Understanding Capabilities
+Project-URL: Homepage, https://llava-vl.github.io
+Project-URL: Bug Tracker, https://github.com/haotian-liu/LLaVA/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: standalone
+Requires-Dist: shortuuid; extra == "standalone"
+Requires-Dist: httpx==0.24.0; extra == "standalone"
+Requires-Dist: einops; extra == "standalone"
+Requires-Dist: ftfy; extra == "standalone"
+Provides-Extra: train
+Requires-Dist: llava[standalone]; extra == "train"
+Requires-Dist: numpy==1.26.1; extra == "train"
+Requires-Dist: open_clip_torch; extra == "train"
+Requires-Dist: fastapi; extra == "train"
+Requires-Dist: markdown2[all]; extra == "train"
+Requires-Dist: numpy; extra == "train"
+Requires-Dist: requests; extra == "train"
+Requires-Dist: sentencepiece; extra == "train"
+Requires-Dist: uvicorn; extra == "train"
+Requires-Dist: wandb; extra == "train"
+Requires-Dist: deepspeed==0.14.4; extra == "train"
+Requires-Dist: peft==0.4.0; extra == "train"
+Requires-Dist: accelerate==1.11.0; extra == "train"
+Requires-Dist: tokenizers~=0.21.1; extra == "train"
+Requires-Dist: transformers==4.51.0; extra == "train"
+Requires-Dist: bitsandbytes==0.45.5; extra == "train"
+Requires-Dist: scikit-learn==1.2.2; extra == "train"
+Requires-Dist: sentencepiece~=0.1.99; extra == "train"
+Requires-Dist: torch==2.2.0; extra == "train"
+Requires-Dist: torchvision==0.17.0; extra == "train"
+Requires-Dist: einops==0.6.1; extra == "train"
+Requires-Dist: einops-exts==0.0.4; extra == "train"
+Requires-Dist: gradio_client==0.2.9; extra == "train"
+Requires-Dist: urllib3<=2.0.0; extra == "train"
+Requires-Dist: datasets==2.16.1; extra == "train"
+Requires-Dist: pydantic==1.10.8; extra == "train"
+Requires-Dist: timm; extra == "train"
+Requires-Dist: hf_transfer; extra == "train"
+Requires-Dist: opencv-python; extra == "train"
+Requires-Dist: av; extra == "train"
+Requires-Dist: decord; extra == "train"
+Requires-Dist: tyro; extra == "train"
+Requires-Dist: scipy; extra == "train"
+Requires-Dist: mmh3; extra == "train"
+Requires-Dist: nltk; extra == "train"
+Requires-Dist: openpyxl; extra == "train"
+Requires-Dist: fairscale; extra == "train"
+Requires-Dist: h5py; extra == "train"
+Dynamic: license-file
+
+# ⚡️👁️ RL makes MLLMs see  better than SFT
+
+<p align="center">
+    <img src="https://june-page.github.io/pivot/assets/figures/hover-pivot-1.jpeg"
+         alt="PIVOT_explain_1"
+         width="350"
+         style="margin-right: 20px;">
+    <img src="https://june-page.github.io/pivot/assets/figures/hover-pivot-2.jpeg"
+         alt="PIVOT_explain_2"
+         width="350">
+</p>
+
+<div align="center">
+
+<a href="https://www.arxiv.org/abs/2510.16333" target="_blank">
+    <img alt="arXiv"
+         src="https://img.shields.io/badge/arXiv-PIVOT-red?logo=arxiv"
+         height="25" />
+</a>
+<a href="https://june-page.github.io/pivot" target="_blank">
+    <img alt="Website"
+         src="https://img.shields.io/badge/🌎_Website-github.io/pivot-blue.svg"
+         height="25" />
+</a>
+<br>
+</div>
+
+<!-- <div style="font-family: charter; font-size: 15px;">
+    <b>
+        <a href="https://www.junha.page/p/about.html" target="_blank">
+            Junha Song<sup>1,2</sup>
+        </a>,
+        <a href="https://sangdooyun.github.io/" target="_blank">
+            Sangdoo Yun<sup>2</sup>
+        </a>,
+        <a href="https://sites.google.com/site/dyhan0920//" target="_blank">
+            Dongyoon Han<sup>2</sup>
+        </a>,
+        <a href="https://sites.google.com/site/jaegulchoo/" target="_blank">
+            Jaegul Choo<sup>1</sup>
+        </a>,
+        <a href="https://sites.google.com/view/byeongho-heo/home" target="_blank">
+            Byeongho Heo<sup>2</sup>
+        </a>
+    </b>
+</div> -->
+
+<!-- <br>
+
+<div style="font-family: charter; font-size: 14px;">
+    <sup>1</sup> KAIST &nbsp;&nbsp;
+    <sup>2</sup> NAVER AI Lab
+</div>
+
+<br>
+
+<p align="center">
+    <img src="https://june-page.github.io/pivot/assets/logos/kaist.png"
+         alt="KAIST"
+         width="120"
+         style="margin-right: 30px;">
+    <img src="https://june-page.github.io/pivot/assets/logos/naver.png"
+         alt="NAVER"
+         width="120">
+</p> -->
+
+<!-- </div> -->
+
+## 0. Contents
+
+1. [Installation](#installation)
+
+
+
+## 1. Installation
+
+```bash
+# bash
+git clone https://github.com/junha1125/PIVOT.git
+cd RLmakesMLLMsSeeBetter
+conda create -n pivot python=3.10.12 -y
+conda activate pivot
+pip install --upgrade pip  # enables PEP 660 support for editable installs
+pip install -e ".[train]"
+```
+
+### Docker (optional)
+
+Recommended base image: `nvcr.io/nvidia/pytorch:23.04-py3`
+Note: if you use this container, remove any torch/torchvision entries from pyproject.toml to avoid version conflicts.
+
+## 2. Dataset
+
+| Stage                             | Description                     | Source                                                                                                                                                                                             |
+| --------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stage1 Pretraining projector-only | BLIP/LAION/CC/SBU 558k manifest | [https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/blob/main/blip_laion_cc_sbu_558k.json](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain/blob/main/blip_laion_cc_sbu_558k.json) |
+| Stage1 Pretraining full training  | LLaVA-OneVision-Data            | [https://huggingface.co/datasets/lmms-lab/LLaVA-OneVision-Data](https://huggingface.co/datasets/lmms-lab/LLaVA-OneVision-Data)                                                                     |
+| Stage2 Post-training              | MMPR-v1.2                       | [https://huggingface.co/datasets/OpenGVLab/MMPR-v1.2](https://huggingface.co/datasets/OpenGVLab/MMPR-v1.2)                                                                                         |
+
+## 3. Train
+
+Our training process consists of two main stages as described in the paper.
+
+### Stage1: Pre-training
+
+```bash
+# bash
+bash scripts/train/stage1-proj-train.sh
+bash scripts/train/stage1-full-train.sh
+```
+
+### Stage2: Post-training
+
+
+```bash
+# bash
+bash scripts/train/stage2-sft.sh
+# or
+bash scripts/train/stage2-dpo.sh
+```
+
+## 4. Eval
+
+We provide comprehensive evaluation scripts, covering both MLLM benchmarks and specific analyses of the vision encoder's representations.
+
+### 4.1 (MLLM) Cambrian
+
+#### Setup
+```bash
+# bash
+pip install mmh3
+sudo apt-get install -y libwebp-dev libjpeg-dev zlib1g-dev
+pip install --upgrade "Pillow[webp]>=10.0.0"
+pip install nltk
+pip install openpyxl
+```
+
+#### Run
+```bash
+# bash
+bash scripts/run_all_benchmarks.sh <Path to MLLM checkpoint root>
+python scripts/tabulate.py  # aggregate results into a table
+```
+
+For more details on the evaluation, please refer to the official repository: https://github.com/cambrian-mllm/cambrian/tree/main/eval
+
+### 4.2 (MLLM) lams-eval
+
+#### Install
+```bash
+# bash
+cd RLmakesMLLMsSeeBetter/lmms-eval
+pip install -e .
+pip install httpx==0.23.3
+pip install protobuf==3.20
+pip install langdetect
+pip install immutabledict
+```
+
+```python
+# bash
+python 
+# python
+import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')  # key
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
+```
+
+#### Run
+
+```bash
+# bash
+python -m accelerate.commands.launch \
+  --num_processes=1 \   
+  --main_process_port 20006 \
+  -m lmms_eval \
+  --model_args pretrained=${ROOT_PATH}/${MODEL_PRETRAINED},conv_template=qwen_1_5,model_name=llava_qwen,attn_implementation=sdpa \
+  --model llava_onevision \
+  --tasks docvqa_val \
+  --batch_size 1 \
+  --log_samples_suffix llava_onevision
+```
+
+For more examples and model configs, please refer to the official repository: https://github.com/EvolvingLMMs-Lab/lmms-eval/tree/main/examples/models
+
+
+### 4.3 (Vision encoder) ImageNet
+
+```python
+# bash
+cd eval_vit
+python imagenet_vit_projector_prototype.py \
+  --pretrained <path-to-mllm-checkpoint-root> \
+  --imagenet_root ./imagenet/ILSVRC2012 \
+  --batch_size 64 --workers 8 --subset_per_class 50
+```
+
+
+### 4.4 (Vision encoder) GradCam
+
+To enable Grad-CAM visualization, add the `--draw_gradcam True` flag to the `scripts/train/stage2-sft.sh` and `scripts/train/stage2-dpo.sh` scripts.
+
+
+### 4.5 For more custom analysis with the vision encoder
+
+```python
+import torch
+from PIL import Image
+from transformers import SiglipVisionConfig, SiglipVisionModel, SiglipImageProcessor
+from eval_vit.utils import from_path_to_vision_encoder, build_projector
+
+vision_base_arch = "google/siglip2-so400m-patch16-384"
+weight_dir = "./checkpoints/stage1-full-train/stage2-sft-siglip2-so500m-Qwen2.5-1.5B-llava" # <Path to MLLM checkpoint root>
+vision_weight = from_path_to_vision_encoder(weight_dir)
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+config = SiglipVisionConfig.from_pretrained(vision_base_arch)
+vit = SiglipVisionModel.from_pretrained(vision_base_arch)
+processor = SiglipImageProcessor.from_pretrained(vision_base_arch)
+
+del vit.vision_model.encoder.layers[-1:]    
+vit.vision_model.head = torch.nn.Identity()
+vit.eval().to(device)
+
+vit_sd = vision_weight["vision_tower"]  
+vit_sd = {k.replace("vision_tower.", "", 1): v for k, v in vit_sd.items()}
+missing, unexpected = vit.load_state_dict(vit_sd, strict=True)
+
+proj_sd = vision_weight["mm_projector"] 
+projector = build_projector(proj_sd, device)
+missing_p, unexpected_p = projector.load_state_dict(proj_sd, strict=True)
+
+IMAGE_PATH = "dog.jpg"
+
+img = Image.open(IMAGE_PATH).convert("RGB")
+batch = processor.preprocess(img, return_tensors="pt")  
+pixel_values = batch["pixel_values"].to(device=device, dtype=torch.float32)
+
+with torch.no_grad():
+    vit_out = vit(pixel_values=pixel_values, output_hidden_states=True)
+    vit_feats = vit_out.hidden_states[-1]           # [batch, num_patchs, vision_hidden_dim]
+    proj_feats = projector(vit_feats)               # [batch, num_patchs, llm_hidden_dim]
+
+print("vit feature shape:", tuple(vit_feats.shape))
+print("projected feature shape:", tuple(proj_feats.shape))
+```
+
+# Acknowledgements
+
+Our work builds upon several open-source projects:
+
+- [LLaVA-OneVision](https://github.com/LLaVA-VL/LLaVA-NeXT)
+- [CLIP](https://github.com/openai/CLIP)
+- [Cambrian](https://github.com/cambrian-mllm/cambrian)
+- [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval)

@@ -1,0 +1,9 @@
+datasets/BLIP558K
+datasets/LLaVA-Next
+datasets/OneVisionData
+datasets/MMPR-v1.2
+datasets/data-processor/MMPR-v1.2
+
+__pycache__/
+*.pyc
+*.pyo
