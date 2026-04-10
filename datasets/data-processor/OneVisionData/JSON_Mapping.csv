@@ -48,7 +48,7 @@ allava_instruct_laion4v,allava_instruct_laion4v_50000.json
 allava_instruct_vflan4v,allava_instruct_vflan4v_20000.json
 ai2d(gpt4v),ai2d_azuregpt_detailed_understanding_4874.json
 ai2d(internvl),ai2d_train_internvl_single_12413.json
-cambrian(filtered),cambrian_filtered_gpt4vo_sp_token_fltd_max10k.json
+cambrian(filtered),cambrian(filtered)_processed.json
 chrome_writting,chrome_writting_train_8835.json
 geo170k(align),geo170k_align_converted_60252.json
 geo170k(qa),geo170k_qa_converted_67833.json
@@ -77,8 +77,8 @@ textcaps,textcaps_train_21952.json
 textocr(gpt4v),textocr_gpt4v_train_converted_25114.json
 ureader_cap,ureader_cap_sft.json
 ureader_ie,ureader_ie_sft.json
-ureader_kg,ureader_kg_sft.json
-ureader_qa,ureader_qa_sft.json
+ureader_kg,ureader_kg_processed.json
+ureader_qa,ureader_qa_processed.json
 vision_flan(filtered),vision_flan_filtered_186070.json
 VisualWebInstruct(filtered),visualwebinstruct_263584.json
 image_textualization(filtered),image_textualization_dataset_filtered.json
