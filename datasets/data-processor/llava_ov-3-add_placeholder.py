@@ -7,7 +7,6 @@ def process_json(path):
     with open(path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     print(f"Succesfully open {os.path.basename(path)}")
-    return
 
     added = 0
     dup_cleaned = 0
